@@ -1,0 +1,4 @@
+const LOGIN = "LOGIN";
+const USERDATA = "USERDATA"
+
+export {LOGIN,USERDATA}

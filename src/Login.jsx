@@ -1,7 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { handleLogin,handleUserData } from "./redux/actions/action";
 const Login = () => {
+  let dispatch = useDispatch()
   let [user, setUser] = useState({
     email: "",
     password: ""
@@ -9,15 +12,22 @@ const Login = () => {
   let navigate = useNavigate();
 
 
-  async function handleLogin(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    let verifyLogin = await axios.post('http://localhost:8000/account/signin', user)
-    if (verifyLogin.status === 200) {
-      localStorage.setItem('token',JSON.stringify(verifyLogin.data))
-      navigate('/')
-    } else {
-      console.log("login failed")
+    try {
+      let verifyLogin = await axios.post('http://localhost:8000/account/signin', user)
+      if (verifyLogin.status === 200) {
+        dispatch(handleLogin(true));
+        dispatch(handleUserData(verifyLogin.data))
+        localStorage.setItem('token', JSON.stringify(verifyLogin.data))
+        navigate('/')
+      } else {
+        console.log("login failed")
+      }
+    } catch (error) {
+      console.log(error)
     }
+
 
   }
 
@@ -37,7 +47,7 @@ const Login = () => {
           <h1 className="text-5xl font-bold text-nowrap">Login now!</h1>
         </div>
         <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <form className="card-body" onSubmit={handleLogin}>
+          <form className="card-body" onSubmit={handleSubmit}>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
