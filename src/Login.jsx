@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { handleLogin,handleUserData } from "./redux/actions/action";
+import { handleLogin, handleUserData } from "./redux/actions/action";
 const Login = () => {
   let dispatch = useDispatch()
   let [user, setUser] = useState({
@@ -20,7 +20,6 @@ const Login = () => {
         dispatch(handleLogin(true));
         dispatch(handleUserData(verifyLogin.data))
         localStorage.setItem('token', JSON.stringify(verifyLogin.data))
-        navigate('/')
       } else {
         console.log("login failed")
       }

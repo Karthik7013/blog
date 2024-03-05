@@ -6,7 +6,7 @@ import axios from 'axios';
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Login from './Login.jsx';
 import Register from './Register.jsx';
-import { Provider, useDispatch, useSelector } from 'react-redux';
+import { Provider, useDispatch } from 'react-redux';
 import store from './redux/configStore.js';
 import { useEffect } from "react";
 import { handleLogin, handleUserData } from './redux/actions/action.js';

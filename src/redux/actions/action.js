@@ -8,7 +8,6 @@ function handleLogin(payload) {
 }
 
 function handleUserData(payload) {
-  console.log(payload)
   return {
     type: USERDATA,
     payload,

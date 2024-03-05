@@ -8,10 +8,7 @@ import RecentPosts from './RecentPosts.jsx';
 import EditPost from './EditPost.jsx';
 import DeletePost from './DeletePost.jsx';
 import CreatePost from './CreatePost.jsx';
-import { useSelector } from 'react-redux';
-
 function App() {
-  
   return (
     <>
       <Navbar />
